@@ -1,7 +1,16 @@
 # igniter-go-libs
 
-reqs:
+## How to build
+### Install build tools:
 
-* gomobile
-* github.com/eycorsican/go-tun2socks@f12913c17d2e5a05d98ec24f05d8dcc5d7816b39
-* github.com/Dreamacro/clash@dev
+* go 1.13
+* gomobile https://github.com/golang/mobile
+* dep https://github.com/golang/dep
+
+### Build:
+
+```shell
+dep ensure -update
+./build_android.sh
+```
+
