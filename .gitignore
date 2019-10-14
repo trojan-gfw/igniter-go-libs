@@ -12,6 +12,5 @@
 *.out
 
 # build
-build/*.aar
-build/*.jar
+build/
 vendor/
