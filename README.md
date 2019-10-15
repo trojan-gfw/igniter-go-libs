@@ -11,8 +11,6 @@
 ### Build
 
 ```shell
-GO111MODULE=off go get github.com/trojan-gfw/igniter-go-libs
-cd $GOPATH/src/github.com/trojan-gfw/igniter-go-libs
 dep ensure -update
 make android
 ```
