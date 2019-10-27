@@ -3,8 +3,8 @@ package tun2socks
 import (
 	"log"
 	"net"
-	"syscall"
 
+	"github.com/eycorsican/go-tun2socks/common/dns/cache"
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
 	"github.com/eycorsican/go-tun2socks/core"
 	"github.com/eycorsican/go-tun2socks/proxy/socks"
@@ -27,15 +27,6 @@ func InputPacket(data []byte) {
 	}
 }
 
-// SetNonblock puts the fd in blocking or non-blocking mode.
-func SetNonblock(fd int, nonblocking bool) bool {
-	err := syscall.SetNonblock(fd, nonblocking)
-	if err != nil {
-		return false
-	}
-	return true
-}
-
 // Stop stop it
 func Stop() {
 	isStopped = true
@@ -46,24 +37,30 @@ func Stop() {
 }
 
 // Start sets up lwIP stack, starts a Tun2socks instance
-func Start(packetFlow PacketFlow, socks5Server string, fakeIPStart string, fakeIPStop string) {
+func Start(packetFlow PacketFlow, socks5Server string, fakeIPStart string, fakeIPStop string) int {
 	if packetFlow != nil {
 		if lwipStack == nil {
 			// Setup the lwIP stack.
 			lwipStack = core.NewLWIPStack()
 		}
 
-		fakeDNS := fakedns.NewSimpleFakeDns(fakeIPStart, fakeIPStop)
-		//var fakeDNS dns.FakeDns
 		// Register tun2socks connection handlers.
 		proxyAddr, err := net.ResolveTCPAddr("tcp", socks5Server)
 		proxyHost := proxyAddr.IP.String()
 		proxyPort := uint16(proxyAddr.Port)
 		if err != nil {
 			log.Fatalf("invalid proxy server address: %v", err)
+			return -1
 		}
-		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS, nil))
-		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30, nil, fakeDNS, nil))
+		cacheDNS := cache.NewSimpleDnsCache()
+		if fakeIPStart != "" && fakeIPStop != "" {
+			fakeDNS := fakedns.NewSimpleFakeDns(fakeIPStart, fakeIPStop)
+			core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS, nil))
+			core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30, cacheDNS, fakeDNS, nil))
+		} else {
+			core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, nil, nil))
+			core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30, cacheDNS, nil, nil))
+		}
 
 		// Write IP packets back to TUN.
 		core.RegisterOutputFn(func(data []byte) (int, error) {
@@ -73,4 +70,5 @@ func Start(packetFlow PacketFlow, socks5Server string, fakeIPStart string, fakeI
 
 		isStopped = false
 	}
+	return 0
 }
