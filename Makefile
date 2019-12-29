@@ -3,12 +3,12 @@ SOURCES=github.com/trojan-gfw/igniter-go-libs/clash github.com/trojan-gfw/ignite
 
 all: ios android
 
-ios:
+ios: clean
 	mkdir -p $(BUILDDIR)
 	gomobile bind -o $(BUILDDIR)/golibs.framework -a -ldflags '-s -w' -target=ios $(SOURCES)
 
 
-android:
+android: clean
 	mkdir -p $(BUILDDIR)
 	gomobile bind -o $(BUILDDIR)/golibs.aar -a -ldflags '-s -w' -target=android $(SOURCES)
 
