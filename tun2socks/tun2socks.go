@@ -1,12 +1,10 @@
 package tun2socks
 
 import (
-	"errors"
 	"io"
 	"log"
 	"net"
 	"os"
-	"time"
 
 	"github.com/eycorsican/go-tun2socks/common/dns/cache"
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
@@ -18,30 +16,30 @@ import (
 var (
 	lwipWriter        io.Writer
 	lwipStack         core.LWIPStack
-	isStopped         bool = false
 	mtuUsed           int
 	stopSignalChannel chan bool
+	stopReplyChannel  chan bool
 	tunDev            *water.Interface
 )
 
 // Stop stop it
 func Stop() {
 	log.Printf("enter stop")
+	log.Printf("begin close tun")
+	err := tunDev.Close()
+	if err != nil {
+		log.Printf("close tun: %v", err)
+	}
 	if stopSignalChannel != nil {
 		log.Printf("send stop sig")
-		close(stopSignalChannel)
-		time.Sleep(2 * time.Second)
+		stopSignalChannel <- true
+		log.Printf("stop sig sent")
 	}
-	isStopped = true
+	<-stopReplyChannel
 	if lwipStack != nil {
-		log.Printf("close lwipstack")
+		log.Printf("begin close lwipstack")
 		lwipStack.Close()
 		lwipStack = nil
-	}
-	if tunDev != nil {
-		log.Printf("close tun")
-		tunDev.Close()
-		tunDev = nil
 	}
 }
 
@@ -70,7 +68,6 @@ func createDataPipeWorker() chan bool {
 
 			default:
 				// tun -> lwip
-				log.Printf("start copy buffer")
 				_, err := io.CopyBuffer(lwipWriter, tunDev, make([]byte, mtuUsed))
 				if err != nil {
 					log.Printf("copying data failed: %v", err)
@@ -79,6 +76,7 @@ func createDataPipeWorker() chan bool {
 
 		}
 		log.Printf("exit DataPipe loop")
+		stopReplyChannel <- true
 	}(c)
 
 	return c
@@ -122,16 +120,13 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 	// device, output function should be set before input any packets.
 	core.RegisterOutputFn(func(data []byte) (int, error) {
 		// lwip -> tun
-		if tunDev == nil {
-			return 0, errors.New("tunDev is nil")
-		}
 		return tunDev.Write(data)
 	})
 
+	stopReplyChannel = make(chan bool)
 	stopSignalChannel = createDataPipeWorker()
 
 	log.Printf("Running tun2socks")
 
-	isStopped = false
 	return 0
 }
