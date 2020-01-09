@@ -62,7 +62,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:2eab9d5ea0d09f598fc75e8cdc0c72f47483f2cc7b5f1e4d9be2590603d76214"
+  digest = "1:360c20d7b4faedf950b69c8fa7a95939121bded6083b0679a9e0f4686dc3fa6c"
   name = "github.com/eycorsican/go-tun2socks"
   packages = [
     "common/dns",
@@ -76,7 +76,7 @@
     "proxy/socks",
   ]
   pruneopts = "T"
-  revision = "24eaf89d95c4610eba1e29876c162087cc7b3491"
+  revision = "6d178e4f7316f5a317082056edec740743d2f681"
   source = "github.com/trojan-gfw/go-tun2socks"
 
 [[projects]]
@@ -104,12 +104,12 @@
   version = "v1.0.2"
 
 [[projects]]
-  digest = "1:f0fbceaa3347c12bb6ff0a2cdbf01cfe31ec460ec3f1dfcf39b588b62c3bfc2a"
+  digest = "1:689a293fcee6b6c4c2577951a5f1bfcac77b62ef27f6154db2c50a5cc1db3797"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "eda228adcff6f7a80ddaf1d265209a10a4f51ca9"
-  version = "v1.1.26"
+  revision = "6c0c4e6581f8e173cc562c8b3363ab984e4ae071"
+  version = "v1.1.27"
 
 [[projects]]
   digest = "1:8458ad87b512968637510fc6caea25f8b734dfda7c35fd5ce00300ecd16ccf46"
@@ -145,7 +145,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:12465b9cd62b65184bf9e12d9609459498bc08e1de26c88017507dd461d69d25"
+  digest = "1:ffdffcffe572fbc204c3b62193fc30ca86545afc32c49931e0f1f968153788e9"
   name = "golang.org/x/crypto"
   packages = [
     "argon2",
@@ -159,7 +159,7 @@
     "poly1305",
   ]
   pruneopts = "NUT"
-  revision = "53104e6ec876ad4e22ad27cce588b01392043c1b"
+  revision = "61a87790db17894570dfb32dbaa0a4af9ce60cb4"
 
 [[projects]]
   branch = "master"
@@ -189,7 +189,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:9e582b1daab98f7f92321b98102983ca63cd71618144289bfbe15eef58fcdccf"
+  digest = "1:137de669d5a80cfe5889feb3803f9b6d04547515b560f5f856c46b3d3733bec0"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -198,7 +198,7 @@
     "windows/registry",
   ]
   pruneopts = "NUT"
-  revision = "c709ea063b76879dc9915358f55d4d77c16ab6d5"
+  revision = "548cf772de5052aa878ccb47cdeb7d262b75c8ec"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -224,6 +224,24 @@
   pruneopts = "NUT"
   revision = "342b2e1fbaa52c93f31447ad2c6abc048c63e475"
   version = "v0.3.2"
+
+[[projects]]
+  branch = "master"
+  digest = "1:0634daeabb9e4634a767484386c217e9ebfd0b270280e13f38dc7e67c65879e3"
+  name = "golang.org/x/tools"
+  packages = [
+    "go/ast/astutil",
+    "go/gcexportdata",
+    "go/internal/gcimporter",
+    "go/internal/packagesdriver",
+    "go/packages",
+    "go/types/typeutil",
+    "internal/fastwalk",
+    "internal/gopathwalk",
+    "internal/semver",
+  ]
+  pruneopts = "NUT"
+  revision = "89082a3841783366cb82b3dc4ce9258fb3dad1a9"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
