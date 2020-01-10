@@ -1,5 +1,8 @@
 BUILDDIR=$(shell pwd)/build
-SOURCES=github.com/trojan-gfw/igniter-go-libs/clash github.com/trojan-gfw/igniter-go-libs/tun2socks
+SOURCES= \
+	github.com/trojan-gfw/igniter-go-libs/clash \
+	github.com/trojan-gfw/igniter-go-libs/tun2socks \
+	github.com/trojan-gfw/igniter-go-libs/freeport
 
 all: ios android
 
