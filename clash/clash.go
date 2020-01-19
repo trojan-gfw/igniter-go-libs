@@ -26,6 +26,9 @@ func Start(homedir string) {
 		C.SetHomeDir(homedir)
 	}
 
+	configFile := filepath.Join(C.Path.HomeDir(), C.Path.Config())
+	C.SetConfig(configFile)
+
 	if err := config.Init(C.Path.HomeDir()); err != nil {
 		log.Fatalf("Initial configuration directory error: %s", err.Error())
 	}
