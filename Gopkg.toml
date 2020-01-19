@@ -5,7 +5,7 @@
 
 [[constraint]]
   name = "github.com/Dreamacro/clash"
-  version = "0.16.0"
+  version = "0.17.1"
 
 [[constraint]]
   name = "github.com/sirupsen/logrus"

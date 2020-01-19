@@ -2,17 +2,20 @@
 
 
 [[projects]]
-  digest = "1:c5a070567f869489a38072dbd4c2a6e392f160c40200feb1892b6bd6b67f75ee"
+  digest = "1:51540022d4299b8959d0779466e82b8a7604924f191d212146d3d81cd4be8780"
   name = "github.com/Dreamacro/clash"
   packages = [
     "adapters/inbound",
     "adapters/outbound",
+    "adapters/outboundgroup",
+    "adapters/provider",
     "common/cache",
     "common/murmur3",
     "common/observable",
     "common/picker",
     "common/pool",
     "common/queue",
+    "common/singledo",
     "common/structure",
     "component/auth",
     "component/domain-trie",
@@ -37,8 +40,8 @@
     "tunnel",
   ]
   pruneopts = "NUT"
-  revision = "d1fb442bd51ca697f8d9f7b3d451c9bdd83401cd"
-  version = "v0.16.0"
+  revision = "14a3ff32f6647fd0262f6239d43a8ea1762c7ca2"
+  version = "v0.17.1"
 
 [[projects]]
   digest = "1:2b01537c1d93da7869920dad42a412ff7cd0a38ff3f3c0d93c63da783cbe6d49"
