@@ -192,7 +192,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:4f71045e3916f41136ca18978734b117da03803fb3f6f03e6317f5f8fe4f6010"
+  digest = "1:caf74ce02305c0e1074349e024eb972ac567941571a0bcacb460d571ba870525"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -201,7 +201,7 @@
     "windows/registry",
   ]
   pruneopts = "NUT"
-  revision = "59e60aa80a0c64fa4b088976ee16ad7f04252c25"
+  revision = "34d275377bf96a094e8d5b0c61750ddd54cd6b36"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -245,7 +245,7 @@
     "internal/semver",
   ]
   pruneopts = "NUT"
-  revision = "0cba7a3a9ee9d9a5917ed56b9668e7ad35eaa571"
+  revision = "dc16b66866f162ba54d3dddf5358df8e86d25dca"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"

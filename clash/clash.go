@@ -26,7 +26,7 @@ func Start(homedir string) {
 		C.SetHomeDir(homedir)
 	}
 
-	configFile := filepath.Join(C.Path.HomeDir(), C.Path.Config())
+	configFile := filepath.Join(C.Path.HomeDir(), "config.yaml")
 	C.SetConfig(configFile)
 
 	if err := config.Init(C.Path.HomeDir()); err != nil {
