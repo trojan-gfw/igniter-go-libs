@@ -65,7 +65,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:360c20d7b4faedf950b69c8fa7a95939121bded6083b0679a9e0f4686dc3fa6c"
+  digest = "1:7838df5d652c0a0de6aa255e69a53d8ba6d5fcb6cd747d29fab82dc4533455b2"
   name = "github.com/eycorsican/go-tun2socks"
   packages = [
     "common/dns",
@@ -79,7 +79,7 @@
     "proxy/socks",
   ]
   pruneopts = "T"
-  revision = "6d178e4f7316f5a317082056edec740743d2f681"
+  revision = "e196e32839321dd59ac9ce86be519492637a7f6c"
   source = "github.com/trojan-gfw/go-tun2socks"
 
 [[projects]]
@@ -192,7 +192,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:caf74ce02305c0e1074349e024eb972ac567941571a0bcacb460d571ba870525"
+  digest = "1:acde45f96217199e60f6efe3e2ef41c9e22b74e3a1c6671232363ed1a05987a7"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -201,7 +201,7 @@
     "windows/registry",
   ]
   pruneopts = "NUT"
-  revision = "34d275377bf96a094e8d5b0c61750ddd54cd6b36"
+  revision = "9fbb57f87de9ccfe3a99d4e3270ce8a926ebba4f"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -230,7 +230,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ba64cb64f1d5c594cd913937eddd5085b791e6d6d3eaa94c2d1a95c3fd7c9a03"
+  digest = "1:48718862a143af198e15e87344fd80920016f527d1edff15edbd19a4b21ac4ad"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
@@ -239,13 +239,10 @@
     "go/internal/packagesdriver",
     "go/packages",
     "go/types/typeutil",
-    "internal/fastwalk",
-    "internal/gopathwalk",
     "internal/packagesinternal",
-    "internal/semver",
   ]
   pruneopts = "NUT"
-  revision = "dc16b66866f162ba54d3dddf5358df8e86d25dca"
+  revision = "8fe064f891f2084bc046f3ebf13b0c2258993b8c"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
@@ -256,12 +253,12 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:1532269ea4c7a7fcb29639a46318dd00c0f99c2f308a2a2860acf5b5354b8acc"
+  digest = "1:d9b9ac6943a512737f76bf3d61b08d97121c66686bc02ffc231313563230b468"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "NUT"
-  revision = "1f64d6156d11335c3f22d9330b0ad14fc1e789ce"
-  version = "v2.2.7"
+  revision = "53403b58ad1b561927d19068c655246f2db79d48"
+  version = "v2.2.8"
 
 [solve-meta]
   analyzer-name = "dep"
