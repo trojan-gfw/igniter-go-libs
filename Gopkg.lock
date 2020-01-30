@@ -65,7 +65,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ecdabf9af1bdea44475c1448f4eb8689d5e1bae69ede340578cb75a8f0faa014"
+  digest = "1:fc66b3e66aafd0d92cac7ef491c0b208db30776ddfb853e5de79610bdacb38e3"
   name = "github.com/eycorsican/go-tun2socks"
   packages = [
     "common/dns",
@@ -79,7 +79,7 @@
     "proxy/socks",
   ]
   pruneopts = "T"
-  revision = "f11d8074c803607100ee9217a271fe5da8c75c03"
+  revision = "f0b14b2fec108ea51579ff2694ef13d4add8c585"
   source = "github.com/trojan-gfw/go-tun2socks"
 
 [[projects]]
@@ -162,7 +162,7 @@
     "poly1305",
   ]
   pruneopts = "NUT"
-  revision = "530e935923ad688be97c15eeb8e5ee42ebf2b54a"
+  revision = "69ecbb4d6d5dab05e49161c6e77ea40a030884e1"
 
 [[projects]]
   branch = "master"
@@ -230,7 +230,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:c98f13c5c2708ed34a6d90a71fd219fe7b615c1cad10f7cb9dcf46b223870641"
+  digest = "1:b2d9802d41127cc2ed0adc6295d5f201b8070bc30b5efa88f517ae3220b53174"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
@@ -242,7 +242,7 @@
     "internal/packagesinternal",
   ]
   pruneopts = "NUT"
-  revision = "345141a368593509252933bd1e146558314b6d0c"
+  revision = "2f3ba24bd6e75104fb11be4edf062de340ffd1ab"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
