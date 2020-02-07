@@ -65,7 +65,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:fc66b3e66aafd0d92cac7ef491c0b208db30776ddfb853e5de79610bdacb38e3"
+  digest = "1:f81e3156d5f43778332eb152980458d50a541c3a8dcf91bc9d22aa4373fa2dfe"
   name = "github.com/eycorsican/go-tun2socks"
   packages = [
     "common/dns",
@@ -79,7 +79,7 @@
     "proxy/socks",
   ]
   pruneopts = "T"
-  revision = "f0b14b2fec108ea51579ff2694ef13d4add8c585"
+  revision = "2d264cc8341b2d2262022e3c7274045283723e4b"
   source = "github.com/trojan-gfw/go-tun2socks"
 
 [[projects]]
@@ -162,7 +162,7 @@
     "poly1305",
   ]
   pruneopts = "NUT"
-  revision = "69ecbb4d6d5dab05e49161c6e77ea40a030884e1"
+  revision = "a0c6ece9d31a0ebfbd3ddf2d290cfb1265ba47c7"
 
 [[projects]]
   branch = "master"
@@ -180,7 +180,7 @@
     "publicsuffix",
   ]
   pruneopts = "NUT"
-  revision = "6afb5195e5aab057fda82e27171243402346b0ad"
+  revision = "16171245cfb220d5317888b716d69c1fb4e7992b"
 
 [[projects]]
   branch = "master"
@@ -192,7 +192,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:acde45f96217199e60f6efe3e2ef41c9e22b74e3a1c6671232363ed1a05987a7"
+  digest = "1:ecdcbf7bc115880fdd55282b4525edc9a31ffbb9507b684ce2f0da0ae80f272a"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -201,7 +201,7 @@
     "windows/registry",
   ]
   pruneopts = "NUT"
-  revision = "9fbb57f87de9ccfe3a99d4e3270ce8a926ebba4f"
+  revision = "d101bd2416d505c0448a6ce8a282482678040a89"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -230,7 +230,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b2d9802d41127cc2ed0adc6295d5f201b8070bc30b5efa88f517ae3220b53174"
+  digest = "1:060d05e6f50db04025a7e6bc5edc3d2f8a6255280e295da61473d966a6884a59"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
@@ -242,7 +242,7 @@
     "internal/packagesinternal",
   ]
   pruneopts = "NUT"
-  revision = "2f3ba24bd6e75104fb11be4edf062de340ffd1ab"
+  revision = "6fdc5776f4bb9cfbe937e5e3080e09eee6c9023a"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
