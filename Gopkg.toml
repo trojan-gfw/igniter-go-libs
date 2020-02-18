@@ -5,16 +5,16 @@
 
 [[constraint]]
   name = "github.com/Dreamacro/clash"
-  version = "0.17.1"
+  revision = "f69f635e0b0ada91f68be3a8566cf36e51f81818"
 
 [[constraint]]
   name = "github.com/sirupsen/logrus"
   version = "1.4.2"
 
 [[override]]
-  branch = "master"
   name = "github.com/eycorsican/go-tun2socks"
   source = "github.com/trojan-gfw/go-tun2socks"
+  revision = "efeee82202ff1e4664bec98fd08a413f703a9f9a"
 
 [prune]
   go-tests = true

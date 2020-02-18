@@ -2,7 +2,7 @@
 
 
 [[projects]]
-  digest = "1:51540022d4299b8959d0779466e82b8a7604924f191d212146d3d81cd4be8780"
+  digest = "1:b1e9e4294e7525e98848ee1c83b32ee96a55ad840f887393e9b0571dd61458a3"
   name = "github.com/Dreamacro/clash"
   packages = [
     "adapters/inbound",
@@ -18,8 +18,10 @@
     "common/singledo",
     "common/structure",
     "component/auth",
+    "component/dialer",
     "component/domain-trie",
     "component/fakeip",
+    "component/mmdb",
     "component/nat",
     "component/simple-obfs",
     "component/snell",
@@ -40,8 +42,7 @@
     "tunnel",
   ]
   pruneopts = "NUT"
-  revision = "14a3ff32f6647fd0262f6239d43a8ea1762c7ca2"
-  version = "v0.17.1"
+  revision = "f69f635e0b0ada91f68be3a8566cf36e51f81818"
 
 [[projects]]
   digest = "1:2b01537c1d93da7869920dad42a412ff7cd0a38ff3f3c0d93c63da783cbe6d49"
@@ -64,8 +65,7 @@
   version = "v1.1.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:f81e3156d5f43778332eb152980458d50a541c3a8dcf91bc9d22aa4373fa2dfe"
+  digest = "1:734b2dbb1acf17f5eff2179d717258c38c27bd9d2b719f1086ff31042220b8c1"
   name = "github.com/eycorsican/go-tun2socks"
   packages = [
     "common/dns",
@@ -79,7 +79,7 @@
     "proxy/socks",
   ]
   pruneopts = "T"
-  revision = "2d264cc8341b2d2262022e3c7274045283723e4b"
+  revision = "efeee82202ff1e4664bec98fd08a413f703a9f9a"
   source = "github.com/trojan-gfw/go-tun2socks"
 
 [[projects]]
@@ -162,7 +162,7 @@
     "poly1305",
   ]
   pruneopts = "NUT"
-  revision = "a0c6ece9d31a0ebfbd3ddf2d290cfb1265ba47c7"
+  revision = "1d94cc7ab1c630336ab82ccb9c9cda72a875c382"
 
 [[projects]]
   branch = "master"
@@ -192,7 +192,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ecdcbf7bc115880fdd55282b4525edc9a31ffbb9507b684ce2f0da0ae80f272a"
+  digest = "1:2ee533d21acf05ed2a2f4cbf789e37322a7a1ba993450a0ef60b96d4aaecc1c8"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -201,7 +201,7 @@
     "windows/registry",
   ]
   pruneopts = "NUT"
-  revision = "d101bd2416d505c0448a6ce8a282482678040a89"
+  revision = "9197077df8675547dfa5e04c6dfcd024257a2030"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -242,7 +242,7 @@
     "internal/packagesinternal",
   ]
   pruneopts = "NUT"
-  revision = "6fdc5776f4bb9cfbe937e5e3080e09eee6c9023a"
+  revision = "b320d3a0f5a29dea7f95f1ca5c4cbef0ac24a304"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
