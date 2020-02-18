@@ -30,11 +30,9 @@ func Stop() {
 	if err != nil {
 		log.Printf("close tun: %v", err)
 	}
-	if stopSignalChannel != nil {
-		log.Printf("send stop sig")
-		stopSignalChannel <- true
-		log.Printf("stop sig sent")
-	}
+	log.Printf("send stop sig")
+	close(stopSignalChannel)
+	log.Printf("stop sig sent")
 	<-stopReplyChannel
 	if lwipStack != nil {
 		log.Printf("begin close lwipstack")
@@ -59,12 +57,15 @@ func createDataPipeWorker() chan bool {
 
 	// Copy packets from tun device to lwip stack, it's the main loop.
 	go func(c <-chan bool) {
+		var ok bool
 	Loop:
 		for {
 			select {
-			case <-c:
-				log.Printf("got DataPipe stop signal")
-				break Loop
+			case _, ok = <-c:
+				if !ok {
+					log.Printf("got DataPipe stop signal")
+					break Loop
+				}
 
 			default:
 				// tun -> lwip
@@ -76,7 +77,7 @@ func createDataPipeWorker() chan bool {
 
 		}
 		log.Printf("exit DataPipe loop")
-		stopReplyChannel <- true
+		close(stopReplyChannel)
 	}(c)
 
 	return c
