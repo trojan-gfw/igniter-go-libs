@@ -13,7 +13,7 @@ ios: clean
 
 android: clean
 	mkdir -p $(BUILDDIR)
-	gomobile bind -o $(BUILDDIR)/golibs.aar -a -ldflags '-s -w' -target=android $(SOURCES)
+	gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -ldflags '-s -w' -target=android $(SOURCES)
 
 clean:
 	rm -rf $(BUILDDIR)
