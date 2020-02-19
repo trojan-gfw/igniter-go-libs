@@ -242,7 +242,7 @@
     "internal/packagesinternal",
   ]
   pruneopts = "NUT"
-  revision = "b320d3a0f5a29dea7f95f1ca5c4cbef0ac24a304"
+  revision = "f8e42dc47720b31a0fedf0b422ee4cbd171ab163"
 
 [[projects]]
   digest = "1:4f0ac2a7cc350b14c72a9de0de046b908482d6f16183c8570ee4d6e17adc6a94"
@@ -269,6 +269,7 @@
     "github.com/Dreamacro/clash/hub/executor",
     "github.com/eycorsican/go-tun2socks/common/dns/cache",
     "github.com/eycorsican/go-tun2socks/common/dns/fakedns",
+    "github.com/eycorsican/go-tun2socks/common/log",
     "github.com/eycorsican/go-tun2socks/core",
     "github.com/eycorsican/go-tun2socks/proxy/socks",
     "github.com/sirupsen/logrus",
