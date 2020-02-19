@@ -2,14 +2,17 @@ package tun2socks
 
 import (
 	"io"
-	"log"
 	"net"
 	"os"
+	"strings"
 
 	"github.com/eycorsican/go-tun2socks/common/dns/cache"
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
+	"github.com/eycorsican/go-tun2socks/common/log"
 	"github.com/eycorsican/go-tun2socks/core"
 	"github.com/eycorsican/go-tun2socks/proxy/socks"
+	"github.com/trojan-gfw/igniter-go-libs/tun2socks/simpleandroidlog" // Register a simple android logger.
+
 	"github.com/songgao/water"
 )
 
@@ -24,18 +27,18 @@ var (
 
 // Stop stop it
 func Stop() {
-	log.Printf("enter stop")
-	log.Printf("begin close tun")
+	log.Infof("enter stop")
+	log.Infof("begin close tun")
 	err := tunDev.Close()
 	if err != nil {
-		log.Printf("close tun: %v", err)
+		log.Infof("close tun: %v", err)
 	}
-	log.Printf("send stop sig")
+	log.Infof("send stop sig")
 	close(stopSignalChannel)
-	log.Printf("stop sig sent")
+	log.Infof("stop sig sent")
 	<-stopReplyChannel
 	if lwipStack != nil {
-		log.Printf("begin close lwipstack")
+		log.Infof("begin close lwipstack")
 		lwipStack.Close()
 		lwipStack = nil
 	}
@@ -63,7 +66,7 @@ func createDataPipeWorker() chan bool {
 			select {
 			case _, ok = <-c:
 				if !ok {
-					log.Printf("got DataPipe stop signal")
+					log.Infof("got DataPipe stop signal")
 					break Loop
 				}
 
@@ -71,12 +74,12 @@ func createDataPipeWorker() chan bool {
 				// tun -> lwip
 				_, err := io.CopyBuffer(lwipWriter, tunDev, make([]byte, mtuUsed))
 				if err != nil {
-					log.Printf("copying data failed: %v", err)
+					log.Infof("copying data failed: %v", err)
 				}
 			}
 
 		}
-		log.Printf("exit DataPipe loop")
+		log.Infof("exit DataPipe loop")
 		close(stopReplyChannel)
 	}(c)
 
@@ -104,7 +107,7 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 	proxyHost := proxyAddr.IP.String()
 	proxyPort := uint16(proxyAddr.Port)
 	if err != nil {
-		log.Printf("invalid proxy server address: %v", err)
+		log.Infof("invalid proxy server address: %v", err)
 		return -1
 	}
 	cacheDNS := cache.NewSimpleDnsCache()
@@ -127,7 +130,29 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 	stopReplyChannel = make(chan bool)
 	stopSignalChannel = createDataPipeWorker()
 
-	log.Printf("Running tun2socks")
+	log.Infof("Running tun2socks")
 
 	return 0
+}
+
+// SetLoglevel set tun2socks log level
+// possible input: debug/info/warn/error/none
+func SetLoglevel(logLevel string) {
+	// Set log level.
+	switch strings.ToLower(logLevel) {
+	case "debug":
+		log.SetLevel(log.DEBUG)
+	case "info":
+		log.SetLevel(log.INFO)
+	case "warn":
+		log.SetLevel(log.WARN)
+	case "error":
+		log.SetLevel(log.ERROR)
+	case "none":
+		log.SetLevel(log.NONE)
+	default:
+		panic("unsupport logging level")
+	}
+	logger := simpleandroidlog.GetLogger()
+	log.Infof("LogLevel: %v", logger.GetLevel())
 }
