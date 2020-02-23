@@ -1,5 +1,5 @@
-github.com/Dreamacro/clash v0.17.2-0.20200220032916-d68339cea7c9 h1:N3iZdH5qUaHN/dUg/F7AohGvGX45g3NSfpn7czXGhPM=
-github.com/Dreamacro/clash v0.17.2-0.20200220032916-d68339cea7c9/go.mod h1:m4UV1mc3xILkAEtpEeIirHkk+mYLUbCCWEe7yLfuJUs=
+github.com/Dreamacro/clash v0.18.1-0.20200222071803-9eaca6e4ab4c h1:97cwxuJe89o6A552jbVT8Xwg+ut3KhQk9IIzH/bvdkw=
+github.com/Dreamacro/clash v0.18.1-0.20200222071803-9eaca6e4ab4c/go.mod h1:m4UV1mc3xILkAEtpEeIirHkk+mYLUbCCWEe7yLfuJUs=
 github.com/Dreamacro/go-shadowsocks2 v0.1.5 h1:BizWSjmwzAyQoslz6YhJYMiAGT99j9cnm9zlxVr+kyI=
 github.com/Dreamacro/go-shadowsocks2 v0.1.5/go.mod h1:LSXCjyHesPY3pLjhwff1mQX72ItcBT/N2xNC685cYeU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -59,6 +59,7 @@ golang.org/x/sys v0.0.0-20200217220822-9197077df867 h1:JoRuNIf+rpHl+VhScRQQvzbHe
 golang.org/x/sys v0.0.0-20200217220822-9197077df867/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/tools v0.0.0-20191216052735-49a3e744a425/go.mod h1:TB2adYChydJhpapKDTa4BR/hXlZSLoq2Wpct/0txZ28=
+golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898 h1:/atklqdjdhuosWIl6AIbOeHJjicWYPqR9bpxqxYG2pA=
 golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
