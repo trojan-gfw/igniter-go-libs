@@ -5,7 +5,7 @@ go 1.13
 replace github.com/eycorsican/go-tun2socks => github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200223161859-a2959ac811e2
 
 require (
-	github.com/Dreamacro/clash v0.18.1-0.20200222071803-9eaca6e4ab4c
+	github.com/Dreamacro/clash v0.18.1-0.20200225135328-c4994d642963
 	github.com/eycorsican/go-tun2socks v0.0.0
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/sirupsen/logrus v1.4.2
