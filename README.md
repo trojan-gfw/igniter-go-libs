@@ -4,12 +4,12 @@
 
 ### Prerequirements
 
-* go 1.13
+* go >= 1.13
 * gomobile https://github.com/golang/mobile
 
 ### Install Go
 
-Please make sure you have Go 1.13 installed correctly
+Please make sure you have at least Go 1.13 installed correctly
 
 ```shell
 go version
