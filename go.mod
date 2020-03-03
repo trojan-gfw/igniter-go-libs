@@ -1,6 +1,6 @@
 module github.com/trojan-gfw/igniter-go-libs
 
-go 1.13
+go 1.14
 
 replace github.com/eycorsican/go-tun2socks => github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200303133446-621e28ddce02
 
