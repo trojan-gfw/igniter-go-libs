@@ -5,6 +5,10 @@ github.com/Dreamacro/go-shadowsocks2 v0.1.5/go.mod h1:LSXCjyHesPY3pLjhwff1mQX72I
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/djherbis/buffer v1.1.0 h1:uGQ+DZDAMlfC2z3khbBtLcAHC0wyoNrX9lpOml3g3fg=
+github.com/djherbis/buffer v1.1.0/go.mod h1:VwN8VdFkMY0DCALdY8o00d3IZ6Amz/UNVMWcSaJT44o=
+github.com/djherbis/nio v2.0.3+incompatible h1:CidFHoR25he4511AIQ3RW9LH9XkLMOoNML8xd7R7Irc=
+github.com/djherbis/nio v2.0.3+incompatible/go.mod h1:v74owXPROGWsr1y28T13rlXf5Hn/bWJ1bbX8M+BqyPo=
 github.com/eapache/queue v1.1.0 h1:YOEu7KNc61ntiQlcEeUIoDTJ2o8mQznoNvUhiigpIqc=
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
 github.com/go-chi/chi v4.0.3+incompatible/go.mod h1:eB3wogJHnLi3x/kFX2A+IbTBlXxmMeXJVKy9tTv1XzQ=
@@ -36,8 +40,8 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.5.1 h1:nOGnQDM7FYENwehXlg/kFVnos3rEvtKTjRvOWSzb6H4=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200302122209-a5f400ec2488 h1:9LHNhrBXJDBttvw2Ai+dWTjZfbFD/e5hf1Q8eOYpDtA=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200302122209-a5f400ec2488/go.mod h1:w57dZZV03lMCupse6JymOuvv4O4kbyHjMuqWUTeSUaQ=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200303012513-67fe855da98a h1:RQ/SXArfBRkFbtdV9C9dJ+wRfJknh31UuOp2wyDhC1Y=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200303012513-67fe855da98a/go.mod h1:w57dZZV03lMCupse6JymOuvv4O4kbyHjMuqWUTeSUaQ=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
 golang.org/x/crypto v0.0.0-20191206172530-e9b2fee46413/go.mod h1:LzIPMQfyMNhhGPhUkYOs5KpL4U8rLKemX1yGLhDgUto=
