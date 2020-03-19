@@ -10,6 +10,7 @@ import (
 	"github.com/eycorsican/go-tun2socks/common/dns/cache"
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
 	"github.com/eycorsican/go-tun2socks/common/log"
+	"github.com/eycorsican/go-tun2socks/component/pool"
 	"github.com/eycorsican/go-tun2socks/core"
 	"github.com/eycorsican/go-tun2socks/proxy/socks"
 	"github.com/trojan-gfw/igniter-go-libs/tun2socks/simpleandroidlog" // Register a simple android logger.
@@ -73,7 +74,9 @@ func createDataPipeWorker() chan bool {
 
 			default:
 				// tun -> lwip
-				_, err := io.CopyBuffer(lwipWriter, tunDev, make([]byte, mtuUsed))
+				buf := pool.NewBytes(pool.BufSize)
+				_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
+				pool.FreeBytes(buf)
 				if err != nil {
 					log.Infof("copying data failed: %v", err)
 				}
