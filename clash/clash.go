@@ -7,6 +7,7 @@ import (
 	"github.com/Dreamacro/clash/config"
 	C "github.com/Dreamacro/clash/constant"
 	"github.com/Dreamacro/clash/hub/executor"
+	"github.com/Dreamacro/clash/tunnel"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -59,5 +60,11 @@ func Stop() {
 	}
 
 	executor.ApplyConfig(cfg, true)
+
+	snapshot := tunnel.DefaultManager.Snapshot()
+	for _, c := range snapshot.Connections {
+		c.Close()
+	}
+
 	runningFlag = false
 }
