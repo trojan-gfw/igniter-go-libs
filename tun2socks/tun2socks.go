@@ -114,11 +114,11 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 	cacheDNS := cache.NewSimpleDnsCache()
 	if fakeIPStart != "" && fakeIPStop != "" {
 		fakeDNS := fakedns.NewSimpleFakeDns(fakeIPStart, fakeIPStop)
-		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS, nil))
-		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, fakeDNS, nil))
+		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS))
+		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, fakeDNS))
 	} else {
-		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, nil, nil))
-		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, nil, nil))
+		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, nil))
+		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, nil))
 	}
 
 	// Register an output callback to write packets output from lwip stack to tun
