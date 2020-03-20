@@ -1,6 +1,7 @@
 package tun2socks
 
 import (
+	"errors"
 	"io"
 	"net"
 	"os"
@@ -101,6 +102,7 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 		// defer func(){
 		//   // do teardown
 		// }
+		zeroErr := errors.New("no error")
 		for {
 			// do some work here
 
@@ -122,7 +124,7 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 			}
 		}
 		log.Infof("exit DataPipe loop")
-		return nil // any errors?
+		return zeroErr // any errors?
 	})
 
 	log.Infof("Running tun2socks")
