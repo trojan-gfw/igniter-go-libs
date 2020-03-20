@@ -11,6 +11,7 @@ import (
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
 	"github.com/eycorsican/go-tun2socks/common/log"
 	"github.com/eycorsican/go-tun2socks/component/pool"
+	"github.com/eycorsican/go-tun2socks/component/runner"
 	"github.com/eycorsican/go-tun2socks/core"
 	"github.com/eycorsican/go-tun2socks/proxy/socks"
 	"github.com/trojan-gfw/igniter-go-libs/tun2socks/simpleandroidlog" // Register a simple android logger.
@@ -19,12 +20,11 @@ import (
 )
 
 var (
-	lwipWriter        io.Writer
-	lwipStack         core.LWIPStack
-	mtuUsed           int
-	stopSignalChannel chan bool
-	stopReplyChannel  chan bool
-	tunDev            *water.Interface
+	lwipWriter          io.Writer
+	lwipStack           core.LWIPStack
+	mtuUsed             int
+	lwipTUNDataPipeTask *runner.Task
+	tunDev              *water.Interface
 )
 
 // Stop stop it
@@ -36,9 +36,9 @@ func Stop() {
 		log.Infof("close tun: %v", err)
 	}
 	log.Infof("send stop sig")
-	close(stopSignalChannel)
+	lwipTUNDataPipeTask.Stop()
 	log.Infof("stop sig sent")
-	<-stopReplyChannel
+	<-lwipTUNDataPipeTask.StopChan()
 	if lwipStack != nil {
 		log.Infof("begin close lwipstack")
 		lwipStack.Close()
@@ -53,41 +53,6 @@ func openTunDevice(tunFd int) (*water.Interface, error) {
 		ReadWriteCloser: file,
 	}
 	return tunDev, nil
-}
-
-// DataPipeWorker generator
-func createDataPipeWorker() chan bool {
-	// a stop signal channel
-	c := make(chan bool)
-
-	// Copy packets from tun device to lwip stack, it's the main loop.
-	go func(c <-chan bool) {
-		var ok bool
-	Loop:
-		for {
-			select {
-			case _, ok = <-c:
-				if !ok {
-					log.Infof("got DataPipe stop signal")
-					break Loop
-				}
-
-			default:
-				// tun -> lwip
-				buf := pool.NewBytes(pool.BufSize)
-				_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
-				pool.FreeBytes(buf)
-				if err != nil {
-					log.Infof("copying data failed: %v", err)
-				}
-			}
-
-		}
-		log.Infof("exit DataPipe loop")
-		close(stopReplyChannel)
-	}(c)
-
-	return c
 }
 
 // Start sets up lwIP stack, starts a Tun2socks instance
@@ -131,8 +96,34 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 		return tunDev.Write(data)
 	})
 
-	stopReplyChannel = make(chan bool)
-	stopSignalChannel = createDataPipeWorker()
+	lwipTUNDataPipeTask = runner.Go(func(shouldStop runner.S) error {
+		// do setup
+		// defer func(){
+		//   // do teardown
+		// }
+		for {
+			// do some work here
+
+			maxErrorTimes := 20
+			// tun -> lwip
+			buf := pool.NewBytes(pool.BufSize)
+			_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
+			pool.FreeBytes(buf)
+			if err != nil {
+				maxErrorTimes--
+				log.Infof("copying data failed: %v", err)
+			}
+			if shouldStop() {
+				log.Infof("got DataPipe stop signal")
+				break
+			}
+			if maxErrorTimes <= 0 {
+				return err
+			}
+		}
+		log.Infof("exit DataPipe loop")
+		return nil // any errors?
+	})
 
 	log.Infof("Running tun2socks")
 
