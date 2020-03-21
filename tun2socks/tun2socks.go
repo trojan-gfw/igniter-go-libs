@@ -36,10 +36,13 @@ func Stop() {
 	if err != nil {
 		log.Infof("close tun: %v", err)
 	}
-	log.Infof("send stop sig")
-	lwipTUNDataPipeTask.Stop()
-	log.Infof("stop sig sent")
-	<-lwipTUNDataPipeTask.StopChan()
+	if lwipTUNDataPipeTask.Running() {
+		log.Infof("send stop sig")
+		lwipTUNDataPipeTask.Stop()
+		log.Infof("stop sig sent")
+		<-lwipTUNDataPipeTask.StopChan()
+	}
+
 	if lwipStack != nil {
 		log.Infof("begin close lwipstack")
 		lwipStack.Close()
