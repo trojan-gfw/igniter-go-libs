@@ -20,6 +20,15 @@ import (
 	"github.com/songgao/water"
 )
 
+type Tun2socksStartOptions struct {
+	TunFd        int
+	Socks5Server string
+	FakeIPStart  string
+	FakeIPStop   string
+	MTU          int
+	EnableIPv6   bool
+}
+
 var (
 	lwipWriter          io.Writer
 	lwipStack           core.LWIPStack
@@ -60,23 +69,23 @@ func openTunDevice(tunFd int) (*water.Interface, error) {
 }
 
 // Start sets up lwIP stack, starts a Tun2socks instance
-func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string, mtu int) int {
+func Start(opt *Tun2socksStartOptions) int {
 
-	mtuUsed = mtu
+	mtuUsed = opt.MTU
 	var err error
-	tunDev, err = openTunDevice(tunFd)
+	tunDev, err = openTunDevice(opt.TunFd)
 	if err != nil {
 		log.Fatalf("failed to open tun device: %v", err)
 	}
 
 	if lwipStack == nil {
 		// Setup the lwIP stack.
-		lwipStack = core.NewLWIPStack()
+		lwipStack = core.NewLWIPStack(opt.EnableIPv6)
 		lwipWriter = lwipStack.(io.Writer)
 	}
 
 	// Register tun2socks connection handlers.
-	proxyAddr, err := net.ResolveTCPAddr("tcp", socks5Server)
+	proxyAddr, err := net.ResolveTCPAddr("tcp", opt.Socks5Server)
 	proxyHost := proxyAddr.IP.String()
 	proxyPort := uint16(proxyAddr.Port)
 	if err != nil {
@@ -84,8 +93,8 @@ func Start(tunFd int, socks5Server string, fakeIPStart string, fakeIPStop string
 		return -1
 	}
 	cacheDNS := cache.NewSimpleDnsCache()
-	if fakeIPStart != "" && fakeIPStop != "" {
-		fakeDNS := fakedns.NewSimpleFakeDns(fakeIPStart, fakeIPStop)
+	if opt.FakeIPStart != "" && opt.FakeIPStop != "" {
+		fakeDNS := fakedns.NewSimpleFakeDns(opt.FakeIPStart, opt.FakeIPStop)
 		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS))
 		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, fakeDNS))
 	} else {
