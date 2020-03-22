@@ -3,6 +3,7 @@ package clash
 import (
 	"os"
 	"path/filepath"
+	"sync/atomic"
 
 	"github.com/Dreamacro/clash/config"
 	C "github.com/Dreamacro/clash/constant"
@@ -13,7 +14,7 @@ import (
 )
 
 var (
-	runningFlag bool
+	runningFlag atomic.Value
 )
 
 func Start(homedir string) {
@@ -39,12 +40,13 @@ func Start(homedir string) {
 		return
 	}
 	executor.ApplyConfig(cfg, true)
-	runningFlag = true
+	runningFlag.Store(true)
 	return
 }
 
 func IsRunning() bool {
-	return runningFlag
+	run := runningFlag.Load()
+	return run.(bool)
 }
 
 func Stop() {
@@ -66,5 +68,5 @@ func Stop() {
 		c.Close()
 	}
 
-	runningFlag = false
+	runningFlag.Store(false)
 }
