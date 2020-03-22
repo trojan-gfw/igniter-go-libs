@@ -11,11 +11,11 @@ import (
 	"github.com/eycorsican/go-tun2socks/common/dns/cache"
 	"github.com/eycorsican/go-tun2socks/common/dns/fakedns"
 	"github.com/eycorsican/go-tun2socks/common/log"
+	"github.com/eycorsican/go-tun2socks/common/log/simpleandroidlog" // Register a simple android logger.
 	"github.com/eycorsican/go-tun2socks/component/pool"
 	"github.com/eycorsican/go-tun2socks/component/runner"
 	"github.com/eycorsican/go-tun2socks/core"
 	"github.com/eycorsican/go-tun2socks/proxy/socks"
-	"github.com/trojan-gfw/igniter-go-libs/tun2socks/simpleandroidlog" // Register a simple android logger.
 
 	"github.com/songgao/water"
 )
@@ -46,17 +46,14 @@ func Stop() {
 		log.Infof("close tun: %v", err)
 	}
 	if lwipTUNDataPipeTask.Running() {
-		log.Infof("send stop sig")
+		log.Infof("send stop lwipTUNDataPipeTask sig")
 		lwipTUNDataPipeTask.Stop()
-		log.Infof("stop sig sent")
+		log.Infof("lwipTUNDataPipeTask stop sig sent")
 		<-lwipTUNDataPipeTask.StopChan()
 	}
 
-	if lwipStack != nil {
-		log.Infof("begin close lwipstack")
-		lwipStack.Close()
-		lwipStack = nil
-	}
+	log.Infof("begin close lwipStack")
+	lwipStack.Close(core.DELAY)
 }
 
 // hack to receive tunfd
@@ -77,12 +74,15 @@ func Start(opt *Tun2socksStartOptions) int {
 	if err != nil {
 		log.Fatalf("failed to open tun device: %v", err)
 	}
-
-	if lwipStack == nil {
-		// Setup the lwIP stack.
-		lwipStack = core.NewLWIPStack(opt.EnableIPv6)
-		lwipWriter = lwipStack.(io.Writer)
+	// handle previous lwIP stack
+	if lwipStack != nil {
+		log.Infof("begin close previous lwipStack")
+		lwipStack.Close(core.INSTANT)
 	}
+
+	// Setup the lwIP stack.
+	lwipStack = core.NewLWIPStack(opt.EnableIPv6)
+	lwipWriter = lwipStack.(io.Writer)
 
 	// Register tun2socks connection handlers.
 	proxyAddr, err := net.ResolveTCPAddr("tcp", opt.Socks5Server)
@@ -109,6 +109,13 @@ func Start(opt *Tun2socksStartOptions) int {
 		return tunDev.Write(data)
 	})
 
+	if lwipTUNDataPipeTask != nil && lwipTUNDataPipeTask.Running() {
+		log.Infof("stop previous lwipTUNDataPipeTask sig")
+		lwipTUNDataPipeTask.Stop()
+		log.Infof("previous lwipTUNDataPipeTask stop sig sent")
+		<-lwipTUNDataPipeTask.StopChan()
+	}
+
 	lwipTUNDataPipeTask = runner.Go(func(shouldStop runner.S) error {
 		// do setup
 		// defer func(){
@@ -132,6 +139,7 @@ func Start(opt *Tun2socksStartOptions) int {
 				break
 			}
 			if maxErrorTimes <= 0 {
+				log.Infof("lwipTUNDataPipeTask returns due to exceeded error times")
 				return err
 			}
 		}
