@@ -122,10 +122,10 @@ func Start(opt *Tun2socksStartOptions) int {
 		//   // do teardown
 		// }
 		zeroErr := errors.New("no error")
+		maxErrorTimes := 20
 		for {
 			// do some work here
 
-			maxErrorTimes := 20
 			// tun -> lwip
 			buf := pool.NewBytes(pool.BufSize)
 			_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
