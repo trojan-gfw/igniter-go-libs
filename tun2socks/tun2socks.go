@@ -50,6 +50,8 @@ func Stop() {
 		lwipTUNDataPipeTask.Stop()
 		log.Infof("lwipTUNDataPipeTask stop sig sent")
 		<-lwipTUNDataPipeTask.StopChan()
+	} else {
+		log.Infof("lwipTUNDataPipeTask already stopped")
 	}
 
 	log.Infof("begin close lwipStack")
@@ -78,6 +80,8 @@ func Start(opt *Tun2socksStartOptions) int {
 	if lwipStack != nil {
 		log.Infof("begin close previous lwipStack")
 		lwipStack.Close(core.INSTANT)
+	} else {
+		log.Infof("do NOT have to close previous lwipStack")
 	}
 
 	// Setup the lwIP stack.
@@ -114,6 +118,8 @@ func Start(opt *Tun2socksStartOptions) int {
 		lwipTUNDataPipeTask.Stop()
 		log.Infof("previous lwipTUNDataPipeTask stop sig sent")
 		<-lwipTUNDataPipeTask.StopChan()
+	} else {
+		log.Infof("previous lwipTUNDataPipeTask already stopped or never being started")
 	}
 
 	lwipTUNDataPipeTask = runner.Go(func(shouldStop runner.S) error {
