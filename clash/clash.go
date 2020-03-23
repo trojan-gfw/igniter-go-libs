@@ -70,3 +70,8 @@ func Stop() {
 
 	runningFlag.Store(false)
 }
+
+func init() {
+	// default value
+	runningFlag.Store(false)
+}
