@@ -23,8 +23,7 @@ import (
 type Tun2socksStartOptions struct {
 	TunFd        int
 	Socks5Server string
-	FakeIPStart  string
-	FakeIPStop   string
+	FakeIPRange  string
 	MTU          int
 	EnableIPv6   bool
 }
@@ -97,8 +96,12 @@ func Start(opt *Tun2socksStartOptions) int {
 		return -1
 	}
 	cacheDNS := cache.NewSimpleDnsCache()
-	if opt.FakeIPStart != "" && opt.FakeIPStop != "" {
-		fakeDNS := fakedns.NewSimpleFakeDns(opt.FakeIPStart, opt.FakeIPStop)
+	if opt.FakeIPRange != "" {
+		_, ipnet, err := net.ParseCIDR(opt.FakeIPRange)
+		if err != nil {
+			log.Fatalf("failed to parse fake ip range %v", opt.FakeIPRange)
+		}
+		fakeDNS := fakedns.NewFakeDNS(ipnet, 3000)
 		core.RegisterTCPConnHandler(socks.NewTCPHandler(proxyHost, proxyPort, fakeDNS))
 		core.RegisterUDPConnHandler(socks.NewUDPHandler(proxyHost, proxyPort, 30*time.Second, cacheDNS, fakeDNS))
 	} else {
