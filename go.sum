@@ -42,8 +42,8 @@ github.com/stretchr/testify v1.5.1 h1:nOGnQDM7FYENwehXlg/kFVnos3rEvtKTjRvOWSzb6H
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/trojan-gfw/clash v0.19.1-0.20200402124347-267f08db8655 h1:7no1kLIWqF6M9NNOabZ31qr25hbsEr5PZ15v0+qPhmw=
 github.com/trojan-gfw/clash v0.19.1-0.20200402124347-267f08db8655/go.mod h1:vf6ypVqVmkJiqqq+OyFl+d3/Vx4p6Ge2jz8Opn7S+jw=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200403123316-2bf6b8aefbb9 h1:MDshg1bzocx9799hUEJC33DKzWRxHpCGTQN7QRFhWSA=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200403123316-2bf6b8aefbb9/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200407140353-ad9c55301cbe h1:7Wgnb+ryWWzn7rcjcKws0hmpWijUv3vE4sKWzFv/60g=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200407140353-ad9c55301cbe/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
 github.com/v2pro/plz v0.0.0-20180227161703-2d49b86ea382 h1:SDwpMM36MwogjPMfRBmFy5koN6QC5NmdrXPxNRQZ6Ek=
 github.com/v2pro/plz v0.0.0-20180227161703-2d49b86ea382/go.mod h1:6xoYDIZTeCY25tlsJC/zNlCh84xCKwBSAXwKF32tdIg=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
