@@ -2,7 +2,7 @@ module github.com/trojan-gfw/igniter-go-libs
 
 go 1.14
 
-replace github.com/eycorsican/go-tun2socks => github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200427143317-c42a3c8404f9
+replace github.com/eycorsican/go-tun2socks => github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200428102113-65b167764b4c
 
 replace github.com/Dreamacro/clash => github.com/trojan-gfw/clash v0.19.1-0.20200427143534-e56c9f49a32c
 
