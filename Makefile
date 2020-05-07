@@ -13,12 +13,12 @@ all: ios android
 
 ios: clean
 	mkdir -p $(BUILDDIR)
-	gomobile bind -o $(BUILDDIR)/golibs.framework -a -ldflags '-s -w' -target=ios $(IMPORT_PATH)
+	gomobile bind -o $(BUILDDIR)/golibs.framework -a -ldflags '-w' -target=ios $(IMPORT_PATH)
 
 
 android: clean
 	mkdir -p $(BUILDDIR)
-	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -x -ldflags '-s -w' -target=android  -gcflags=-trimpath=$(CURRENT_GOPATH) -gcflags=-trimpath=$(CURRENT_WORKDIR) $(IMPORT_PATH)
+	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -x -ldflags '-w' -target=android  -gcflags=-trimpath=$(CURRENT_GOPATH) -gcflags=-trimpath=$(CURRENT_WORKDIR) $(IMPORT_PATH)
 
 clean:
 	gomobile clean
