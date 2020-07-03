@@ -53,8 +53,10 @@ func IsRunning() bool {
 func Stop() {
 	// this is an unofficial feature of Clash, from: https://github.com/Dreamacro/clash/pull/341
 	g := &config.General{
-		Port:      0,
-		SocksPort: 0,
+		Inbound: config.Inbound{
+			Port:      0,
+			SocksPort: 0,
+		},
 	}
 	cfg := &config.Config{
 		General:      g,
