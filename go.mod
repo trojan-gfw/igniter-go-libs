@@ -4,7 +4,7 @@ go 1.14
 
 replace github.com/eycorsican/go-tun2socks => github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200716050102-3295ba3cd724
 
-replace github.com/Dreamacro/clash => github.com/trojan-gfw/clash v0.19.1-0.20200716041838-662b5bf358af
+replace github.com/Dreamacro/clash => github.com/trojan-gfw/clash v0.19.1-0.20200719134427-465ef28d2146
 
 require (
 	github.com/Dreamacro/clash v0.0.0
