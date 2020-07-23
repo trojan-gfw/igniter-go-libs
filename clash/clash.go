@@ -1,8 +1,12 @@
 package clash
 
 import (
+	"fmt"
+	"io/ioutil"
+	"net"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync/atomic"
 
 	"github.com/Dreamacro/clash/config"
@@ -18,9 +22,19 @@ var (
 	runningFlag atomic.Value
 )
 
-func Start(homedir string) {
-	os.Setenv("GODEBUG", os.Getenv("GODEBUG")+",tls13=1")
+type ClashStartOptions struct {
+	// HomeDir Clash config home directory
+	HomeDir string
+	// SocksListener Clash listener address and port
+	SocksListener string
+	// TrojanProxyServer Trojan proxy listening address and port
+	TrojanProxyServer string
+	// TrojanProxyServerUdpEnabled Whether UDP is enabled for Trojan Server
+	TrojanProxyServerUdpEnabled bool
+}
 
+func Start(opt *ClashStartOptions) {
+	homedir := opt.HomeDir
 	if homedir != "" {
 		if !filepath.IsAbs(homedir) {
 			currentDir, _ := os.Getwd()
@@ -36,11 +50,7 @@ func Start(homedir string) {
 		log.Fatalf("Initial configuration directory error: %s", err.Error())
 	}
 
-	cfg, err := executor.Parse()
-	if err != nil {
-		return
-	}
-	executor.ApplyConfig(cfg, true)
+	ApplyRawConfig(opt)
 	runningFlag.Store(true)
 	return
 }
@@ -51,27 +61,94 @@ func IsRunning() bool {
 }
 
 func Stop() {
-	// this is an unofficial feature of Clash, from: https://github.com/Dreamacro/clash/pull/341
-	g := &config.General{
-		Inbound: config.Inbound{
-			Port:      0,
-			SocksPort: 0,
-		},
+	snapshot := tunnel.DefaultManager.Snapshot()
+	for _, c := range snapshot.Connections {
+		err := c.Close()
+		if err != nil {
+			log.Warnf("Clash Stop(): close conn err %v", err)
+		}
 	}
-	cfg := &config.Config{
-		General:      g,
-		DNS:          &config.DNS{},
-		Experimental: &config.Experimental{},
+
+	opt := &ClashStartOptions{
+		SocksListener:               "127.0.0.1:0",
+		TrojanProxyServer:           "127.0.0.1:0",
+		TrojanProxyServerUdpEnabled: true,
+	}
+	ApplyRawConfig(opt)
+
+	runningFlag.Store(false)
+}
+
+func ApplyRawConfig(opt *ClashStartOptions) {
+
+	// handle user input
+	socksListenerHost, socksListenerPort, err := net.SplitHostPort(opt.SocksListener)
+	if err != nil {
+		log.Fatalf("SplitHostPort err: %v (%v)", err, opt.SocksListener)
+	}
+	if len(socksListenerHost) <= 0 {
+		log.Fatalf("SplitHostPort host is empty: %v", socksListenerHost)
+	}
+	trojanProxyServerHost, trojanProxyServerPort, err := net.SplitHostPort(opt.TrojanProxyServer)
+	if err != nil {
+		log.Fatalf("SplitHostPort err: %v (%v)", err, opt.TrojanProxyServer)
+	}
+	if len(trojanProxyServerHost) <= 0 {
+		log.Fatalf("SplitHostPort host is empty: %v", trojanProxyServerHost)
+	}
+
+	rawConfigBytes, err := readConfig(C.Path.Config())
+	if err != nil {
+		log.Fatalf("fail to read Clash config file")
+	}
+	rawCfg, err := config.UnmarshalRawConfig(rawConfigBytes)
+	if err != nil {
+		log.Fatalf("UnmarshalRawConfig: %v", err)
+	}
+
+	port, err := strconv.Atoi(socksListenerPort)
+	if err != nil {
+		log.Fatalf("fail to convert socksListenerPort %v", socksListenerPort)
+	}
+	if len(rawCfg.Proxy) <= 0 {
+		log.Fatalf("should at least add one upstream proxy server")
+	}
+
+	rawCfg.SocksPort = port
+	rawCfg.BindAddress = socksListenerHost //default is *
+	firstProxyServerMap := rawCfg.Proxy[0]
+	//proxies:
+	//  - { name: "trojan", type: socks5, server: "127.0.0.1", port: 1081, udp: true}
+	if firstProxyServerMap["type"] == "socks5" && firstProxyServerMap["name"] == "trojan" {
+		firstProxyServerMap["server"] = trojanProxyServerHost
+		firstProxyServerMap["port"] = trojanProxyServerPort
+		firstProxyServerMap["udp"] = opt.TrojanProxyServerUdpEnabled
+	} else {
+		log.Fatalf("fail to find trojan proxy entry in Clash config")
+	}
+
+	cfg, err := config.ParseRawConfig(rawCfg)
+	if err != nil {
+		log.Fatalf("ParseRawConfig: %v", err)
 	}
 
 	executor.ApplyConfig(cfg, true)
+}
 
-	snapshot := tunnel.DefaultManager.Snapshot()
-	for _, c := range snapshot.Connections {
-		c.Close()
+func readConfig(path string) ([]byte, error) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return nil, err
+	}
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
 	}
 
-	runningFlag.Store(false)
+	if len(data) == 0 {
+		return nil, fmt.Errorf("configuration file %s is empty", path)
+	}
+
+	return data, err
 }
 
 func init() {
