@@ -1,5 +1,5 @@
-github.com/Dreamacro/go-shadowsocks2 v0.1.5 h1:BizWSjmwzAyQoslz6YhJYMiAGT99j9cnm9zlxVr+kyI=
-github.com/Dreamacro/go-shadowsocks2 v0.1.5/go.mod h1:LSXCjyHesPY3pLjhwff1mQX72ItcBT/N2xNC685cYeU=
+github.com/Dreamacro/go-shadowsocks2 v0.1.6-0.20200722122336-8e5c7db4f96a h1:JhQFrFOkCpRB8qsN6PrzHFzjy/8iQpFFk5cbOiplh6s=
+github.com/Dreamacro/go-shadowsocks2 v0.1.6-0.20200722122336-8e5c7db4f96a/go.mod h1:LSXCjyHesPY3pLjhwff1mQX72ItcBT/N2xNC685cYeU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -40,10 +40,10 @@ github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXf
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/trojan-gfw/clash v0.19.1-0.20200719134427-465ef28d2146 h1:1K21eFWFkP3td5PLX4EGqKMwCWGZcSYzaBO4lbsCKDQ=
-github.com/trojan-gfw/clash v0.19.1-0.20200719134427-465ef28d2146/go.mod h1:gwzl5HsWscK0+w+wqUq4SG4tYB1V8GFyGC6/OpN/98A=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200720120100-0af2db83f6c6 h1:OWrPKAdGH/QW5NwFJNt7HfcsnezZpjy93QNw2CLSIDQ=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200720120100-0af2db83f6c6/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
+github.com/trojan-gfw/clash v0.19.1-0.20200723124356-4d5f0d416061 h1:D164QRxC86MHtiQ5ATKSHJNDxmbwErM/MRJJ7g4fG3c=
+github.com/trojan-gfw/clash v0.19.1-0.20200723124356-4d5f0d416061/go.mod h1:6BcAzDQ4lo4hpCKNDvtsXbqn8dCHorXJ75rl9T9HtzI=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200723124135-b160cbbf6122 h1:RVOvO4oQjpmeS9vwAFQFI2BjYDOETssgtYLS1R+YOCo=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200723124135-b160cbbf6122/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
 github.com/v2pro/plz v0.0.0-20180227161703-2d49b86ea382 h1:SDwpMM36MwogjPMfRBmFy5koN6QC5NmdrXPxNRQZ6Ek=
 github.com/v2pro/plz v0.0.0-20180227161703-2d49b86ea382/go.mod h1:6xoYDIZTeCY25tlsJC/zNlCh84xCKwBSAXwKF32tdIg=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
