@@ -14,7 +14,7 @@ ios: clean
 
 android: clean
 	mkdir -p $(BUILDDIR)
-	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -x -ldflags '-w' -target=android -trimpath $(IMPORT_PATH)
+	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -x -androidapi 23 -ldflags '-w' -target=android -trimpath $(IMPORT_PATH)
 
 clean:
 	gomobile clean
