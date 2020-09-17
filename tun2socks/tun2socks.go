@@ -136,9 +136,12 @@ func Start(opt *Tun2socksStartOptions) int {
 			// do some work here
 
 			// tun -> lwip
-			buf := pool.NewBytes(pool.BufSize)
-			defer pool.FreeBytes(buf)
-			_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
+			err := func() error {
+				buf := pool.NewBytes(pool.BufSize)
+				defer pool.FreeBytes(buf)
+				_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
+				return err
+			}()
 			if err != nil {
 				maxErrorTimes--
 				log.Infof("copying data failed: %v", err)
