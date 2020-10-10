@@ -49,8 +49,8 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/trojan-gfw/clash v0.19.1-0.20201006031207-deab73739cf8 h1:8MY5Je3scyEQcWh8y46LUN8PoY57UZbjHpoOaQVK79A=
-github.com/trojan-gfw/clash v0.19.1-0.20201006031207-deab73739cf8/go.mod h1:DCazkQRGW2LyRIGTL+ChTvsGxFKDf4C3Rz5N63UqBzU=
+github.com/trojan-gfw/clash v0.19.1-0.20201010045610-6968ebb2445c h1:IY0nJNPik/XpsYUDG8PI80mfnbDTE7am72t4yzIlYQY=
+github.com/trojan-gfw/clash v0.19.1-0.20201010045610-6968ebb2445c/go.mod h1:DCazkQRGW2LyRIGTL+ChTvsGxFKDf4C3Rz5N63UqBzU=
 github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200811040842-c08eb9a80859 h1:mtS4dJZQJfqryckfkBF6Y49k/C56ibgl1ciJparlatA=
 github.com/trojan-gfw/go-tun2socks v1.16.3-0.20200811040842-c08eb9a80859/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
 github.com/v2pro/plz v0.0.0-20200805122259-422184e41b6e h1:Vo4wf8YcHE9G7jD6eDG7au3nLGosOxm/DxQO7JR5dAk=
