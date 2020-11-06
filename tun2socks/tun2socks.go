@@ -133,11 +133,14 @@ func Start(opt *Tun2socksStartOptions) int {
 		zeroErr := errors.New("no error")
 		maxErrorTimes := 20
 		for {
+			// NOTE: the for-loop here will retry when we find errors,
+			//       it gives up when we reach exceeded error times.
 			// do some work here
 
 			// tun -> lwip
 			buf := pool.NewBytes(pool.BufSize)
 			defer pool.FreeBytes(buf)
+			// NOTE: In general, when transfering the data, it blocks here until either end becomes invalid
 			_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
 			if err != nil {
 				maxErrorTimes--
