@@ -114,6 +114,7 @@ func ApplyRawConfig(opt *ClashStartOptions) {
 		log.Fatalf("should at least add one upstream proxy server")
 	}
 
+	rawCfg.AllowLan = true // whether we really use this feature is determined by BindAddress
 	rawCfg.SocksPort = port
 	rawCfg.BindAddress = socksListenerHost //default is *
 	firstProxyServerMap := rawCfg.Proxy[0]

@@ -26,6 +26,7 @@ type Tun2socksStartOptions struct {
 	FakeIPRange  string
 	MTU          int
 	EnableIPv6   bool
+	AllowLan     bool
 }
 
 var (
@@ -84,7 +85,7 @@ func Start(opt *Tun2socksStartOptions) int {
 	}
 
 	// Setup the lwIP stack.
-	lwipStack = core.NewLWIPStack(opt.EnableIPv6)
+	lwipStack = core.NewLWIPStack(opt.EnableIPv6, opt.AllowLan)
 	lwipWriter = lwipStack.(io.Writer)
 
 	// Register tun2socks connection handlers.
