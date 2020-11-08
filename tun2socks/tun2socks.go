@@ -140,9 +140,9 @@ func Start(opt *Tun2socksStartOptions) int {
 
 			// tun -> lwip
 			buf := pool.NewBytes(pool.BufSize)
-			defer pool.FreeBytes(buf)
 			// NOTE: In general, when transfering the data, it blocks here until either end becomes invalid
 			_, err := io.CopyBuffer(lwipWriter, tunDev, buf)
+			pool.FreeBytes(buf)
 			if err != nil {
 				maxErrorTimes--
 				log.Infof("copying data failed: %v", err)
