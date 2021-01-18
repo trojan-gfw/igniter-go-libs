@@ -43,7 +43,7 @@ func Stop() {
 	log.Infof("begin close tun")
 	err := tunDev.Close()
 	if err != nil {
-		log.Infof("close tun: %v", err)
+		log.Infof("close tun(Stop func): %v", err)
 	}
 	if lwipTUNDataPipeTask.Running() {
 		log.Infof("send stop lwipTUNDataPipeTask sig")
@@ -129,8 +129,8 @@ func Start(opt *Tun2socksStartOptions) int {
 	lwipTUNDataPipeTask = runner.Go(func(shouldStop runner.S) error {
 		// do setup
 		// defer func(){
-		//   // do teardown
-		// }
+		//	// do teardown
+		// }()
 		zeroErr := errors.New("no error")
 		maxErrorTimes := 20
 		for {
