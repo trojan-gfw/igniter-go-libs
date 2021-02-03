@@ -13,7 +13,7 @@ import (
 	C "github.com/Dreamacro/clash/constant"
 	_ "github.com/Dreamacro/clash/hub"
 	"github.com/Dreamacro/clash/hub/executor"
-	"github.com/Dreamacro/clash/tunnel"
+	"github.com/Dreamacro/clash/tunnel/statistic"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -61,7 +61,7 @@ func IsRunning() bool {
 }
 
 func Stop() {
-	snapshot := tunnel.DefaultManager.Snapshot()
+	snapshot := statistic.DefaultManager.Snapshot()
 	for _, c := range snapshot.Connections {
 		err := c.Close()
 		if err != nil {

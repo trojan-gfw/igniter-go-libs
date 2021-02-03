@@ -45,10 +45,10 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/trojan-gfw/clash v0.19.1-0.20210118123643-f84665fe97f2 h1:utbXHAfcIR0k1h05YuOo1r+TloKdzhR1U0011gTDEzU=
-github.com/trojan-gfw/clash v0.19.1-0.20210118123643-f84665fe97f2/go.mod h1:alA8QdA6/zm9ZzK1RFK9Jq1wORcRSLHlwkDY1SQp2+Y=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20210118123453-5ac3f4385ff1 h1:54XSGADW3sCJ8HqS8ZYafn/798Ny+oXT2F5M4ojAw18=
-github.com/trojan-gfw/go-tun2socks v1.16.3-0.20210118123453-5ac3f4385ff1/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
+github.com/trojan-gfw/clash v0.19.1-0.20210203134900-f91f6cda747b h1:SLZ2tfGmmjx6Ja10s/twWEBzdteaLRXDOEJLNFAk9bI=
+github.com/trojan-gfw/clash v0.19.1-0.20210203134900-f91f6cda747b/go.mod h1:alA8QdA6/zm9ZzK1RFK9Jq1wORcRSLHlwkDY1SQp2+Y=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20210203134439-7723190ace59 h1:wTC9MbRwtp5zj+SJgcFhDQE7Qwpmf8FCe/wW0xV7SU4=
+github.com/trojan-gfw/go-tun2socks v1.16.3-0.20210203134439-7723190ace59/go.mod h1:iSiwGqBOvfnMVjb+LVOCNygXUTGJ9gngIMp95x1sI9c=
 github.com/v2pro/plz v0.0.0-20200805122259-422184e41b6e h1:Vo4wf8YcHE9G7jD6eDG7au3nLGosOxm/DxQO7JR5dAk=
 github.com/v2pro/plz v0.0.0-20200805122259-422184e41b6e/go.mod h1:3gacX+hQo+xvl0vtLqCMufzxuNCwt4geAVOMt2LQYfE=
 go.uber.org/atomic v1.7.0 h1:ADUqmZGgLDDfbSL9ZmPxKTybcoEYHgpYfELNoN+7hsw=
