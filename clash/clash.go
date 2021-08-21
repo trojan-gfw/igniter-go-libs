@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	"sync/atomic"
 
 	"github.com/Dreamacro/clash/config"
 	C "github.com/Dreamacro/clash/constant"
@@ -16,10 +15,6 @@ import (
 	"github.com/Dreamacro/clash/tunnel/statistic"
 
 	log "github.com/sirupsen/logrus"
-)
-
-var (
-	runningFlag atomic.Value
 )
 
 type ClashStartOptions struct {
@@ -51,13 +46,7 @@ func Start(opt *ClashStartOptions) {
 	}
 
 	ApplyRawConfig(opt)
-	runningFlag.Store(true)
 	return
-}
-
-func IsRunning() bool {
-	run := runningFlag.Load()
-	return run.(bool)
 }
 
 func Stop() {
@@ -75,8 +64,6 @@ func Stop() {
 		TrojanProxyServerUdpEnabled: true,
 	}
 	ApplyRawConfig(opt)
-
-	runningFlag.Store(false)
 }
 
 func ApplyRawConfig(opt *ClashStartOptions) {
@@ -150,9 +137,4 @@ func readConfig(path string) ([]byte, error) {
 	}
 
 	return data, err
-}
-
-func init() {
-	// default value
-	runningFlag.Store(false)
 }
