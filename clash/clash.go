@@ -86,7 +86,7 @@ func ApplyRawConfig(opt *ClashStartOptions) {
 
 	rawConfigBytes, err := readConfig(C.Path.Config())
 	if err != nil {
-		log.Fatalf("fail to read Clash config file")
+		log.Fatalf("fail to read Clash config file: %v", err)
 	}
 	rawCfg, err := config.UnmarshalRawConfig(rawConfigBytes)
 	if err != nil {
