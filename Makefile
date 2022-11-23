@@ -12,9 +12,9 @@ ios: clean
 	gomobile bind -o $(BUILDDIR)/golibs.framework -a -ldflags '-w' -target=ios $(IMPORT_PATH)
 
 
-android: clean
+android: 
 	mkdir -p $(BUILDDIR)
-	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -x -androidapi 23 -ldflags '-w' -target=android $(IMPORT_PATH)
+	env GO111MODULE="on" gomobile bind -o $(BUILDDIR)/golibs.aar -a -v -androidapi 23 -ldflags '-w' -target=android $(IMPORT_PATH)
 
 clean:
 	gomobile clean

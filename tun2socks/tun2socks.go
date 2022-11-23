@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/xjasonlyu/tun2socks/engine"
-	"github.com/xjasonlyu/tun2socks/log"
+	"github.com/xjasonlyu/tun2socks/v2/engine"
+	"github.com/xjasonlyu/tun2socks/v2/log"
 )
 
 type Tun2socksStartOptions struct {
@@ -44,9 +44,7 @@ func Start(opt *Tun2socksStartOptions) int {
 	cachedKey.EnableIPv6 = opt.EnableIPv6
 	engine.Insert(cachedKey)
 
-	if err := engine.Start(); err != nil {
-		log.Errorf("Failed to start engine %v", err)
-	}
+	engine.Start()
 	log.Infof("Running tun2socks")
 
 	return 0
